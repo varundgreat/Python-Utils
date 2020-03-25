@@ -40,8 +40,8 @@ def get_file_list(dirName):
 
 def hash_generator(fileList):
     fileListWithHash = []
-    fileHash = hashlib.sha512()
     for file in fileList:
+        fileHash = hashlib.sha512()
         print(file[0])
         with open(file[0], 'rb') as f:
             fb = f.read(BLOCK_SIZE)
