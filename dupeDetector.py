@@ -78,5 +78,5 @@ def sorter_deleter(dirName):
 
 
 if __name__=='__main__':
-    dirName='g:/Varun/images/test'
+    dirName='./test'
     sorter_deleter(dirName)
