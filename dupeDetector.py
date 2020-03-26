@@ -54,16 +54,9 @@ def hash_generator(fileList):
     return fileListWithHash
 
 def detectDupes(fileListWithHash):
-    dupes = []
-    for i in range(len(fileListWithHash)):
-        j=i+1
-        if (j<=len(fileListWithHash)):
-            while fileListWithHash[i][2] == fileListWithHash[j][2] :
-                dupes.append(fileListWithHash[i])
-                j += 1
-        else:
-            break
-        i = j
+    dupes_removed_dict = {fileAndHash[2]: fileAndHash[0] for fileAndHash in fileListWithHash}
+    # can simply return dupes_removed_dict.values() if you need a list of files that simply needs to be retained
+    dupes = [fileAndHash for fileAndHash in fileListWithHash if fileAndHash[0] not in dupes_removed_dict.values()]
     return dupes
 
 def sorter_deleter(dirName):
@@ -73,8 +66,6 @@ def sorter_deleter(dirName):
         hashedFileList = hash_generator(fileList)
         duplicateFiles = detectDupes(hashedFileList)
         print('done')
-
-
 
 
 if __name__=='__main__':
