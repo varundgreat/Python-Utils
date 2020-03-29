@@ -55,23 +55,26 @@ def hash_generator(fileList):
 
 def detectDupes(fileListWithHash):
     dupes = []
-    for i in range(len(fileListWithHash)):
+    listSize = len(fileListWithHash)
+    fileListWithHash.sort(key = lambda x: x[2])
+    for i in range(listSize):
         j=i+1
-        if (j<=len(fileListWithHash)):
+        if (j < listSize):
             while fileListWithHash[i][2] == fileListWithHash[j][2] :
-                dupes.append(fileListWithHash[i])
+                dupes.append(fileListWithHash[j])
                 j += 1
-        else:
-            break
+                if (j >= listSize):
+                    break
         i = j
     return dupes
 
 def sorter_deleter(dirName):
     if os.path.exists(dirName):
         fileList = get_file_list_with_size(dirName)
-        fileList.sort(reverse=True, key= lambda x: x[1])
+        # fileList.sort(reverse=True, key= lambda x: x[1])
         hashedFileList = hash_generator(fileList)
         duplicateFiles = detectDupes(hashedFileList)
+        print(duplicateFiles)
         print('done')
 
 
