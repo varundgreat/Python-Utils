@@ -48,5 +48,5 @@ def sorter_deleter(dirName):
 
 
 if __name__=='__main__':
-    dirName='M:\Middle Earth - Shadow of Mordor-Black Box\Redist\DX11'
+    dirName='./test'
     sorter_deleter(dirName)
